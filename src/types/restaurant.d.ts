@@ -1,5 +1,4 @@
 import { GoogleMapsPhotos } from './GoogleMapsPhotos'
-
 export interface Restaurant {
   name: string
   types: string[]
@@ -7,6 +6,6 @@ export interface Restaurant {
   address: string
   priceLevel: number
   isOpen: boolean
-  place_id: string
+  placeId: string
   photo: GoogleMapsPhotos
 }
