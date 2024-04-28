@@ -12,11 +12,13 @@
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
     "@types/googlemaps": "^3.43.3",
+    "@types/qs": "^6.9.15",
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.376.0",
     "next": "14.2.3",
+    "qs": "^6.12.1",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.3.0",
