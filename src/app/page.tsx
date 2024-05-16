@@ -1,11 +1,22 @@
+'use client'
 import RestaurantCard from '@/app/shared/restaurant/card'
+import { MOCKUP } from '@/mockup-data/restaurant'
+import { Restaurant } from '@/types/restaurant'
+import { useState } from 'react'
 
 export default function Home() {
+  const [restaurants, setRestaurants] = useState<Restaurant[]>(
+    MOCKUP.restaurants
+  )
+
   return (
     <main className="max-h-screen min-h-screen">
       <section className="grid grid-cols-1 gap-5 p-4 md:p-6">
-        {Array.from({ length: 2 }).map((_, i) => (
-          <RestaurantCard key={i} title={`Restaurant ${i + 1}`} />
+        {restaurants.map((restaurant, i) => (
+          <RestaurantCard
+            key={i}
+            {...restaurant}
+          />
         ))}
       </section>
     </main>
