@@ -5,6 +5,7 @@ import { HeartIcon, ThumbsDownIcon } from 'lucide-react'
 type Props = Restaurant & {
   goNextRestaurant(liked: boolean): void
 }
+
 export default function RestaurantCard({ name, goNextRestaurant }: Props) {
   return (
     <article className="relative">
