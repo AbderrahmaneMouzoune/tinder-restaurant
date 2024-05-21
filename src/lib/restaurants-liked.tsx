@@ -1,5 +1,5 @@
 'use client'
-import { Restaurant, RestaurantWithScore } from '@/types/restaurant'
+import { RestaurantWithScore } from '@/types/restaurant'
 import { createContext, useContext, useState } from 'react'
 
 type RestaurantLikedContextType = {

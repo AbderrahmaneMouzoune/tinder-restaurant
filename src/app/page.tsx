@@ -9,7 +9,7 @@ export default function Home() {
   const restaurantsLiked = restaurantsFiltered.filter((r) => r.score === 1)
   const restaurantsDisliked = restaurantsFiltered.filter((r) => r.score === -1)
   const restaurantSuperLiked = restaurantsFiltered.filter(
-    (r) => r.score === 1.5
+    (r) => r.score === 1.5,
   )
 
   return (

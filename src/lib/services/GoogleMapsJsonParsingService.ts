@@ -2,7 +2,7 @@ import { Restaurant } from '@/types/restaurant'
 import { GoogleApiResponse } from '@/types/GoogleApiResponse'
 
 export function googleMapsJsonParsingService(
-  googleApiResponse: GoogleApiResponse[]
+  googleApiResponse: GoogleApiResponse[],
 ): Restaurant[] {
   return googleApiResponse.map((restaurant) => {
     return {
