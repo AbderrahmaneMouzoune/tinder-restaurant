@@ -35,7 +35,7 @@ export default function RestaurantSlider({ restaurants }: Props) {
     })
   }
 
-  if (!currentRestaurant) {
+  if (currentRestaurant === null) {
     return <h1>Sorry no more restaurant to rate...</h1>
   }
 
