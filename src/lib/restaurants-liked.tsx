@@ -1,13 +1,12 @@
 'use client'
-import { Restaurant } from '@/types/restaurant'
+import { Restaurant, RestaurantWithScore } from '@/types/restaurant'
 import { createContext, useContext, useState } from 'react'
 
 type RestaurantLikedContextType = {
-  restaurantsLiked: Restaurant[]
-  restaurantsDisliked: Restaurant[]
-  setRestaurantsLiked: React.Dispatch<React.SetStateAction<Restaurant[]>>
-  likeRestaurant(restaurant: Restaurant): void
-  dislikeRestaurant(restaurant: Restaurant): void
+  restaurantsFiltered: RestaurantWithScore[]
+  setRestaurantsFiltered: React.Dispatch<
+    React.SetStateAction<RestaurantWithScore[]>
+  >
 }
 
 const RestaurantLikedContext = createContext<
@@ -27,33 +26,15 @@ export default function RestaurantsLikedProvider({
 }: {
   children: React.ReactNode
 }) {
-  const [restaurantsLiked, setRestaurantsLiked] = useState<Restaurant[]>([])
-  const [restaurantsDisliked, setRestaurantsDisliked] = useState<Restaurant[]>(
-    []
-  )
-
-  const dislikeRestaurant = (restaurantDisliked: Restaurant) => {
-    return setRestaurantsDisliked((prevRestaurantsDisLiked) => [
-      ...prevRestaurantsDisLiked,
-      restaurantDisliked,
-    ])
-  }
-
-  const likeRestaurant = (restaurantLiked: Restaurant) => {
-    return setRestaurantsLiked((prevRestaurantsLiked) => [
-      ...prevRestaurantsLiked,
-      restaurantLiked,
-    ])
-  }
+  const [restaurantsFiltered, setRestaurantsFiltered] = useState<
+    RestaurantWithScore[]
+  >([])
 
   return (
     <RestaurantLikedContext.Provider
       value={{
-        restaurantsLiked,
-        restaurantsDisliked,
-        setRestaurantsLiked,
-        likeRestaurant,
-        dislikeRestaurant,
+        restaurantsFiltered,
+        setRestaurantsFiltered,
       }}
     >
       {children}

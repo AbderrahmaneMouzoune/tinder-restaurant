@@ -1,5 +1,5 @@
 import { useRestaurantLiked } from '@/lib/restaurants-liked'
-import { Restaurant } from '@/types/restaurant'
+import { Restaurant, RestaurantScore } from '@/types/restaurant'
 import React, { useState } from 'react'
 import RestaurantCard from '@/app/shared/restaurant/card'
 
@@ -8,19 +8,23 @@ type Props = {
 }
 
 export default function RestaurantSlider({ restaurants }: Props) {
-  const { likeRestaurant, dislikeRestaurant } = useRestaurantLiked()
+  const { setRestaurantsFiltered } = useRestaurantLiked()
   const [currentRestaurant, setCurrentRestaurant] = useState<number | null>(0)
 
   const currentRestaurantInformation: Restaurant | null =
     currentRestaurant === null ? null : restaurants[currentRestaurant]
 
-  const goToNextRestaurant = (liked: boolean): void => {
+  const goToNextRestaurant = (
+    currentRestaurantScore: RestaurantScore
+  ): void => {
     if (currentRestaurant === null || currentRestaurantInformation === null) {
       return
     }
 
-    const callBack = liked ? likeRestaurant : dislikeRestaurant
-    callBack(currentRestaurantInformation)
+    setRestaurantsFiltered((prevRestaurants) => [
+      ...prevRestaurants,
+      { ...currentRestaurantInformation, score: currentRestaurantScore },
+    ])
 
     setCurrentRestaurant((prevRestaurantId) => {
       if (prevRestaurantId === null) {

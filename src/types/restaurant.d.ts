@@ -9,3 +9,9 @@ export interface Restaurant {
   placeId: string
   photo: GoogleMapsPhotos
 }
+
+type RestaurantWithScore = Restaurant & {
+  score: RestaurantScore
+}
+
+type RestaurantScore = 1 | -1 | 0 | 1.5

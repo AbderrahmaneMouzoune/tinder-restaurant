@@ -1,9 +1,8 @@
-import { Button } from '@/components/ui/button'
-import { Restaurant } from '@/types/restaurant'
-import { HeartIcon, ThumbsDownIcon } from 'lucide-react'
+import { Restaurant, RestaurantScore } from '@/types/restaurant'
+import { HeartIcon, ThumbsDownIcon, ThumbsUpIcon } from 'lucide-react'
 
 type Props = Restaurant & {
-  goNextRestaurant(liked: boolean): void
+  goNextRestaurant(currentRestaurantScore: RestaurantScore): void
 }
 
 export default function RestaurantCard({ name, goNextRestaurant }: Props) {
@@ -24,8 +23,9 @@ export default function RestaurantCard({ name, goNextRestaurant }: Props) {
         </div>
 
         <div className="mt-5 flex gap-5 justify-between">
-          <ThumbsDownIcon onClick={() => goNextRestaurant(false)} />
-          <HeartIcon onClick={() => goNextRestaurant(true)} />
+          <ThumbsDownIcon onClick={() => goNextRestaurant(-1)} />
+          <HeartIcon onClick={() => goNextRestaurant(1.5)} />
+          <ThumbsUpIcon onClick={() => goNextRestaurant(1)} />
         </div>
       </div>
     </article>
