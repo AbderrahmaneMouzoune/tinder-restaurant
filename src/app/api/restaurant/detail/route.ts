@@ -19,5 +19,7 @@ export async function GET(req: Request) {
     place_id: `${place_id}`,
     fields: ['name, rating, formatted_phone_number, formatted_adress'],
   }
-  return await fetcherGoogleMap('/place/details/json', params)
+  const detail = await fetcherGoogleMap('/place/details/json', params)
+
+  return Response.json(detail)
 }
