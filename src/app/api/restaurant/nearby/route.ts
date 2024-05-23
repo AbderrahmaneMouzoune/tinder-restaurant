@@ -16,8 +16,6 @@ export async function GET(req: Request) {
   const latitude = query.get('latitude')
   const longitude = query.get('longitude')
 
-  console.log(`Request for : ${latitude} & ${longitude}`)
-
   if (!latitude || !longitude) {
     return new Response('Address parameter is required', {
       status: 400,
@@ -44,7 +42,6 @@ export async function GET(req: Request) {
     })
   }
 
-  console.log('Hello')
   return Response.json({ restaurants })
 }
 
