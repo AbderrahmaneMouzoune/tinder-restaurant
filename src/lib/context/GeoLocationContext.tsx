@@ -9,6 +9,7 @@ interface Location {
 interface GeoLocationContextProps {
   location: Location
   error: string | null
+  updateLocation: ({ longitude, latitude }: Location) => void
   getLocation: () => void
 }
 
@@ -46,8 +47,17 @@ const GeoLocationProvider: React.FC<{ children: ReactNode }> = ({
     }
   }
 
+  const updateLocation = ({ longitude, latitude }: Location) => {
+    return setLocation({
+      latitude,
+      longitude,
+    })
+  }
+
   return (
-    <GeoLocationContext.Provider value={{ location, error, getLocation }}>
+    <GeoLocationContext.Provider
+      value={{ location, error, getLocation, updateLocation }}
+    >
       {children}
     </GeoLocationContext.Provider>
   )

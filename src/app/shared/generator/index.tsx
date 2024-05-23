@@ -26,7 +26,7 @@ const formSchema = z.object({
 
 export default function Generator() {
   const [places, setPlaces] = useState<GeocodeMaps[]>([])
-  const { getLocation } = useGeoLocation()
+  const { updateLocation, getLocation } = useGeoLocation()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,7 +42,9 @@ export default function Generator() {
         return response.json()
       })
       .then((data) => {
-        toast.success(`${data.length} récupéré veuillez choisir la bonne`)
+        toast.success(
+          `${data.length} possible adresse récupéré veuillez choisir la bonne`
+        )
         setPlaces(data)
       })
       .catch((error) => {
@@ -81,7 +83,17 @@ export default function Generator() {
       {places.length > 0 && (
         <ul className="space-y-1 mt-2 overflow-auto">
           {places.map((place) => (
-            <li key={place.place_id}>
+            <li
+              key={place.place_id}
+              onClick={() => {
+                if (Number(place.lat) && Number(place.lon)) {
+                  updateLocation({
+                    longitude: Number(place.lon),
+                    latitude: Number(place.lat),
+                  })
+                }
+              }}
+            >
               <GeocodeMapLocation {...place} />
             </li>
           ))}
