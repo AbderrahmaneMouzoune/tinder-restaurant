@@ -24,6 +24,7 @@ export default function RootLayout({
       <body
         className={cn(
           'min-h-screen max-h-screen overflow-hidden bg-background font-sans antialiased',
+          'bg-gray-100 dark:bg-gray-900',
           fontSans.variable
         )}
       >
