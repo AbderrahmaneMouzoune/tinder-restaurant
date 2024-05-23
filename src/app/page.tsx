@@ -1,15 +1,17 @@
 'use client'
 import Generator from '@/app/shared/generator'
 import Resume from '@/app/shared/resume'
-import { useGeoLocation } from '@/lib/context/GeoLocationContext'
+import TinderUi from '@/app/shared/tinderui'
+import { useGeoLocation } from '@/utils/context/GeoLocationContext'
 
 export default function Home() {
   const { location } = useGeoLocation()
-  const isLocationValid = (location: {
-    latitude: number | null
-    longitude: number | null
-  }) => {
+  const isLocationValid = (location: TLocation) => {
     return location.latitude && location.longitude
+  }
+
+  if (isLocationValid(location)) {
+    return <TinderUi />
   }
 
   return (
@@ -23,7 +25,6 @@ export default function Home() {
       )}
       {!isLocationValid(location) && <Generator />}
       {/* <RestaurantSlider restaurants={MOCKUP.restaurants} /> */}
-      <Resume />
     </main>
   )
 }

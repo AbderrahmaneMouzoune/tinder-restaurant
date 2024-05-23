@@ -1,12 +1,17 @@
 'use client'
 
-import { GeoLocationProvider } from '@/lib/context/GeoLocationContext'
-import { RestaurantsLikedProvider } from '@/lib/context/RestaurantsLikedContext'
+import { GeoLocationProvider } from '@/utils/context/GeoLocationContext'
+import { RestaurantsLikedProvider } from '@/utils/context/RestaurantsLikedContext'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <GeoLocationProvider>
-      <RestaurantsLikedProvider>{children}</RestaurantsLikedProvider>
-    </GeoLocationProvider>
+    <QueryClientProvider client={queryClient}>
+      <GeoLocationProvider>
+        <RestaurantsLikedProvider>{children}</RestaurantsLikedProvider>
+      </GeoLocationProvider>
+    </QueryClientProvider>
   )
 }

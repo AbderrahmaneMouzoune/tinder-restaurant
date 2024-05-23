@@ -1,14 +1,9 @@
-// src/context/GeoLocationContext.tsx
 import React, { createContext, ReactNode, useContext, useState } from 'react'
-interface Location {
-  latitude: number | null
-  longitude: number | null
-}
 
 interface GeoLocationContextProps {
-  location: Location
+  location: TLocation
   error: string | null
-  updateLocation: ({ longitude, latitude }: Location) => void
+  updateLocation: ({ longitude, latitude }: TLocation) => void
   getLocation: () => void
 }
 
@@ -19,7 +14,7 @@ const GeoLocationContext = createContext<GeoLocationContextProps | undefined>(
 const GeoLocationProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [location, setLocation] = useState<Location>({
+  const [location, setLocation] = useState<TLocation>({
     latitude: null,
     longitude: null,
   })
@@ -46,7 +41,7 @@ const GeoLocationProvider: React.FC<{ children: ReactNode }> = ({
     }
   }
 
-  const updateLocation = ({ longitude, latitude }: Location) => {
+  const updateLocation = ({ longitude, latitude }: TLocation) => {
     return setLocation({
       latitude,
       longitude,

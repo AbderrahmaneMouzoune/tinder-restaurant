@@ -10,7 +10,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { useGeoLocation } from '@/lib/context/GeoLocationContext'
+import { useGeoLocation } from '@/utils/context/GeoLocationContext'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LocateIcon } from 'lucide-react'
 import { useState } from 'react'

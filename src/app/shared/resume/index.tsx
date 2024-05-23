@@ -1,4 +1,4 @@
-import { useRestaurantLiked } from '@/lib/context/RestaurantsLikedContext'
+import { useRestaurantLiked } from '@/utils/context/RestaurantsLikedContext'
 
 export default function Resume() {
   const { restaurantsFiltered } = useRestaurantLiked()
