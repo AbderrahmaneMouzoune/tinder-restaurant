@@ -1,6 +1,5 @@
 // src/context/GeoLocationContext.tsx
 import React, { createContext, ReactNode, useContext, useState } from 'react'
-
 interface Location {
   latitude: number | null
   longitude: number | null
