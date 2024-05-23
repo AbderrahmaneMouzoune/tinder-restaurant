@@ -1,6 +1,6 @@
 import RestaurantCard from '@/app/shared/restaurant/card'
-import { useRestaurantLiked } from '@/utils/context/RestaurantsLikedContext'
 import { Restaurant, RestaurantScore } from '@/types/restaurant'
+import { useRestaurantLiked } from '@/utils/context/RestaurantsLikedContext'
 import { useState } from 'react'
 
 type Props = {

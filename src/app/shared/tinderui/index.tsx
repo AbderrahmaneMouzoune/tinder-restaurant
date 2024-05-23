@@ -1,8 +1,7 @@
-import { useGeoLocation } from '@/utils/context/GeoLocationContext'
-import { useQuery } from '@tanstack/react-query'
-import React from 'react'
 import RestaurantSlider from '@/app/shared/restaurant/restaurant-slider'
 import Resume from '@/app/shared/resume'
+import { useGeoLocation } from '@/utils/context/GeoLocationContext'
+import { useQuery } from '@tanstack/react-query'
 
 export default function TinderUi() {
   const { location } = useGeoLocation()
