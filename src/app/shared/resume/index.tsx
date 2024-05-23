@@ -1,5 +1,4 @@
 import { useRestaurantLiked } from '@/lib/context/RestaurantsLikedContext'
-import React from 'react'
 
 export default function Resume() {
   const { restaurantsFiltered } = useRestaurantLiked()
@@ -7,7 +6,7 @@ export default function Resume() {
   const restaurantsLiked = restaurantsFiltered.filter((r) => r.score === 1)
   const restaurantsDisliked = restaurantsFiltered.filter((r) => r.score === -1)
   const restaurantSuperLiked = restaurantsFiltered.filter(
-    (r) => r.score === 1.5,
+    (r) => r.score === 1.5
   )
 
   if (restaurantsFiltered.length === 0) {

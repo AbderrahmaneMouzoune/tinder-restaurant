@@ -1,5 +1,5 @@
 // src/context/GeoLocationContext.tsx
-import React, { createContext, useState, useContext, ReactNode } from 'react'
+import React, { createContext, ReactNode, useContext, useState } from 'react'
 
 interface Location {
   latitude: number | null
@@ -14,7 +14,7 @@ interface GeoLocationContextProps {
 }
 
 const GeoLocationContext = createContext<GeoLocationContextProps | undefined>(
-  undefined,
+  undefined
 )
 
 const GeoLocationProvider: React.FC<{ children: ReactNode }> = ({

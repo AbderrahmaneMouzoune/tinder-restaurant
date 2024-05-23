@@ -4,21 +4,19 @@ import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { useGeoLocation } from '@/lib/context/GeoLocationContext'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LocateIcon } from 'lucide-react'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 import { toast } from 'sonner'
-import { useGeoLocation } from '@/lib/context/GeoLocationContext'
+import { z } from 'zod'
 
 const formSchema = z.object({
   address: z.string().min(5).max(100),
@@ -37,13 +35,13 @@ export default function Generator() {
       .then((response) => {
         if (!response.ok)
           throw new Error(
-            "Une erreur est survenue pour essayer de récupérer l'adress",
+            "Une erreur est survenue pour essayer de récupérer l'adress"
           )
         return response.json()
       })
       .then((data) => {
         toast.success(
-          `${data.length} possible adresse récupéré veuillez choisir la bonne`,
+          `${data.length} possible adresse récupéré veuillez choisir la bonne`
         )
         setPlaces(data)
       })
