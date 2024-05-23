@@ -37,13 +37,13 @@ export default function Generator() {
       .then((response) => {
         if (!response.ok)
           throw new Error(
-            "Une erreur est survenue pour essayer de récupérer l'adress"
+            "Une erreur est survenue pour essayer de récupérer l'adress",
           )
         return response.json()
       })
       .then((data) => {
         toast.success(
-          `${data.length} possible adresse récupéré veuillez choisir la bonne`
+          `${data.length} possible adresse récupéré veuillez choisir la bonne`,
         )
         setPlaces(data)
       })

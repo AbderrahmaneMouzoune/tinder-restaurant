@@ -1,10 +1,6 @@
 'use client'
-import RestaurantSlider from '@/app/shared/restaurant/restaurant-slider'
-import { useRestaurantLiked } from '@/lib/context/RestaurantsLikedContext'
-import { MOCKUP } from '@/mockup-data/restaurant'
 import Generator from '@/app/shared/generator'
 import Resume from '@/app/shared/resume'
-import { useState } from 'react'
 import { useGeoLocation } from '@/lib/context/GeoLocationContext'
 
 export default function Home() {

@@ -14,7 +14,7 @@ export async function GET(req: Request) {
   }
 
   const response = await fetch(
-    `https://geocode.maps.co/search?q=${address}&api_key=${process.env.GEOCODE_MAPS_API_KEY}`
+    `https://geocode.maps.co/search?q=${address}&api_key=${process.env.GEOCODE_MAPS_API_KEY}`,
   )
 
   const data = await response.json()
