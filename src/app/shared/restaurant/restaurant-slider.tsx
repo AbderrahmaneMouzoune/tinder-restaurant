@@ -1,4 +1,4 @@
-import { useRestaurantLiked } from '@/lib/restaurants-liked'
+import { useRestaurantLiked } from '@/lib/context/RestaurantsLikedContext'
 import { Restaurant, RestaurantScore } from '@/types/restaurant'
 import React, { useState } from 'react'
 import RestaurantCard from '@/app/shared/restaurant/card'

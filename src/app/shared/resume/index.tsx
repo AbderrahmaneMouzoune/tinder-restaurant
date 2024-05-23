@@ -1,4 +1,4 @@
-import { useRestaurantLiked } from '@/lib/restaurants-liked'
+import { useRestaurantLiked } from '@/lib/context/RestaurantsLikedContext'
 import React from 'react'
 
 export default function Resume() {

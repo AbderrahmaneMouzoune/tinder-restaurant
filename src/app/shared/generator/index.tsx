@@ -17,6 +17,8 @@ import { LocateIcon } from 'lucide-react'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { toast } from 'sonner'
+import { useGeoLocation } from '@/lib/context/GeoLocationContext'
 
 const formSchema = z.object({
   address: z.string().min(5).max(100),
@@ -24,6 +26,7 @@ const formSchema = z.object({
 
 export default function Generator() {
   const [places, setPlaces] = useState<GeocodeMaps[]>([])
+  const { getLocation } = useGeoLocation()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -39,9 +42,11 @@ export default function Generator() {
         return response.json()
       })
       .then((data) => {
+        toast.success(`${data.length} récupéré veuillez choisir la bonne`)
         setPlaces(data)
       })
       .catch((error) => {
+        toast.error(`Une erreur est survenu`)
         console.error('Erreur survenu ', error)
       })
   }
@@ -68,7 +73,7 @@ export default function Generator() {
           </Button>
         </form>
       </Form>
-      <Button variant="outline" className="w-full mt-2">
+      <Button variant="outline" className="w-full mt-2" onClick={getLocation}>
         <LocateIcon className="size-5 mr-2" />
         Ou utilisé ma position
       </Button>

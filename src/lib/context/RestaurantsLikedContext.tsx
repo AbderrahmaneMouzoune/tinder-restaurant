@@ -13,7 +13,7 @@ const RestaurantLikedContext = createContext<
   RestaurantLikedContextType | undefined
 >(undefined)
 
-export const useRestaurantLiked = (): RestaurantLikedContextType => {
+const useRestaurantLiked = (): RestaurantLikedContextType => {
   const context = useContext(RestaurantLikedContext)
   if (!context)
     throw new Error(`useRestaurantLiked must be used inside a provider`)
@@ -21,11 +21,7 @@ export const useRestaurantLiked = (): RestaurantLikedContextType => {
   return context
 }
 
-export default function RestaurantsLikedProvider({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+function RestaurantsLikedProvider({ children }: { children: React.ReactNode }) {
   const [restaurantsFiltered, setRestaurantsFiltered] = useState<
     RestaurantWithScore[]
   >([])
@@ -41,3 +37,5 @@ export default function RestaurantsLikedProvider({
     </RestaurantLikedContext.Provider>
   )
 }
+
+export { RestaurantsLikedProvider, useRestaurantLiked }
