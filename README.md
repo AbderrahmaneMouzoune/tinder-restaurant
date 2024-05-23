@@ -1,36 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tinder restaurant
 
-## Getting Started
+## A date
 
-First, run the development server:
+Application qui depuis une position géographique récupère N restaurants autour afin de les afficher comme sur tinder. On peux par la suite liker/superlike ou dislike les restaurants.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## A venir
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Fonctionnalités de filtration de restaurants
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [ ] Permettre de re-filtrer la liste des restaurants jusqu'à avoir un maximum de 3 restaurants
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Fonctionnalités de session collaborative
 
-## Learn More
+- [ ] Permettre la création d'une room de likage
+- [ ] Synchroniser les filtres appliqués par différents utilisateurs au sein de la session
+- [ ] Afficher la liste mise à jour des restaurants pour tous les participants de la session
 
-To learn more about Next.js, take a look at the following resources:
+### Interface
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [ ] Afficher les images des restaurants
+- [ ] Pouvoir swiper les cards des restaurants
+- [ ] Afficher des tags de restaurant (sushi, végétarien etc...)
