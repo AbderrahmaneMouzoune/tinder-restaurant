@@ -1,0 +1,43 @@
+'use client'
+import { RestaurantWithScore } from '@/types/restaurant'
+import { createContext, useContext, useState } from 'react'
+
+type RestaurantLikedContextType = {
+  restaurantsFiltered: RestaurantWithScore[]
+  setRestaurantsFiltered: React.Dispatch<
+    React.SetStateAction<RestaurantWithScore[]>
+  >
+}
+
+const RestaurantLikedContext = createContext<
+  RestaurantLikedContextType | undefined
+>(undefined)
+
+export const useRestaurantLiked = (): RestaurantLikedContextType => {
+  const context = useContext(RestaurantLikedContext)
+  if (!context)
+    throw new Error(`useRestaurantLiked must be used inside a provider`)
+
+  return context
+}
+
+export default function RestaurantsLikedProvider({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const [restaurantsFiltered, setRestaurantsFiltered] = useState<
+    RestaurantWithScore[]
+  >([])
+
+  return (
+    <RestaurantLikedContext.Provider
+      value={{
+        restaurantsFiltered,
+        setRestaurantsFiltered,
+      }}
+    >
+      {children}
+    </RestaurantLikedContext.Provider>
+  )
+}
