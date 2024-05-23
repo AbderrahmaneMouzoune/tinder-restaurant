@@ -7,7 +7,7 @@ import Resume from '@/app/shared/resume'
 
 export default function Home() {
   return (
-    <main className="max-h-screen min-h-screen p-5">
+    <main className="min-h-screen p-5">
       <h1 className="text-center text-2xl font-bold">Tinder restaurant</h1>
       <Generator />
       {/* <RestaurantSlider restaurants={MOCKUP.restaurants} /> */}

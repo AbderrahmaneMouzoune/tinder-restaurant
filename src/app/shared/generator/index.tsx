@@ -1,4 +1,5 @@
 'use client'
+import GeocodeMapLocation from '@/components/geocode-map-location'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -13,7 +14,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LocateIcon } from 'lucide-react'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -22,12 +23,27 @@ const formSchema = z.object({
 })
 
 export default function Generator() {
+  const [places, setPlaces] = useState<GeocodeMaps[]>([])
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+    fetch(`/api/map/address?address=${values.address}`)
+      .then((response) => {
+        if (!response.ok)
+          throw new Error(
+            "Une erreur est survenue pour essayer de récupérer l'adress"
+          )
+        return response.json()
+      })
+      .then((data) => {
+        setPlaces(data)
+      })
+      .catch((error) => {
+        console.error('Erreur survenu ', error)
+      })
   }
 
   return (
@@ -47,16 +63,25 @@ export default function Generator() {
               </FormItem>
             )}
           />
-
           <Button className="w-full" type="submit">
-            Générer la liste de restaurants
+            Valider mon addresse
           </Button>
         </form>
       </Form>
-      <Button variant="outline" className="w-full mt-5">
+      <Button variant="outline" className="w-full mt-2">
         <LocateIcon className="size-5 mr-2" />
         Ou utilisé ma position
       </Button>
+
+      {places.length > 0 && (
+        <ul className="space-y-1 mt-2 overflow-auto">
+          {places.map((place) => (
+            <li key={place.place_id}>
+              <GeocodeMapLocation {...place} />
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   )
 }
