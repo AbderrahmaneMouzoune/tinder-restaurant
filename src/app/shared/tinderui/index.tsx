@@ -22,9 +22,22 @@ export default function TinderUi() {
     )
   }
 
+  if (isPending) {
+    return <h1>Loading...</h1>
+  }
+
+  if (!data || data.restaurants.length === 0) {
+    return (
+      <h1>
+        Pas de restaurants autour ou une erreur lors de la récupération des
+        resto
+      </h1>
+    )
+  }
+
   return (
     <>
-      <RestaurantSlider restaurants={data.restaurants} />
+      <RestaurantSlider restaurants={data?.restaurants} />
       <Resume />
     </>
   )
