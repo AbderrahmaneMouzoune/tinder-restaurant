@@ -1,8 +1,8 @@
-import { Restaurant } from '@/types/restaurant'
 import { GoogleApiResponse } from '@/types/GoogleApiResponse'
+import { Restaurant } from '@/types/restaurant'
 
 export function googleMapsJsonParsingService(
-  googleApiResponse: GoogleApiResponse[],
+  googleApiResponse: GoogleApiResponse[]
 ): Restaurant[] {
   return googleApiResponse.map((restaurant) => {
     return {

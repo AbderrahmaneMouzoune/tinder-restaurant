@@ -1,4 +1,5 @@
-import RestaurantsLikedProvider from '@/lib/restaurants-liked'
+import { Providers } from '@/app/provider'
+import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
@@ -23,11 +24,15 @@ export default function RootLayout({
       <head />
       <body
         className={cn(
-          'min-h-screen max-h-screen overflow-hidden bg-background font-sans antialiased',
+          'min-h-screen bg-background font-sans antialiased',
+          'bg-gray-100 dark:bg-gray-900',
           fontSans.variable
         )}
       >
-        <RestaurantsLikedProvider>{children}</RestaurantsLikedProvider>
+        <Providers>
+          {children}
+          <Toaster />
+        </Providers>
       </body>
     </html>
   )

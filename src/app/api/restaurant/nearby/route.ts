@@ -34,7 +34,7 @@ export async function GET(req: Request) {
     })
   }
   const restaurants: Restaurant[] = googleMapsJsonParsingService(
-    googleApiResponseData,
+    googleApiResponseData
   )
   if (googleApiResponseData.length === 0) {
     return new Response('No results found', {
@@ -47,7 +47,7 @@ export async function GET(req: Request) {
 
 async function fetchGooglePlaces(
   latitude: any,
-  longitude: any,
+  longitude: any
 ): Promise<GoogleApiResponse[]> {
   const radius = 1500
   const type = 'restaurant'
@@ -68,7 +68,7 @@ async function fetchGooglePlaces(
 
       const response = await fetcherGoogleMap(
         '/place/nearbysearch/json',
-        params,
+        params
       )
 
       results = results.concat(response.results)
@@ -77,6 +77,6 @@ async function fetchGooglePlaces(
       console.error(error)
       return []
     }
-  } while (nextPageToken && results.length < 100)
+  } while (nextPageToken && results.length < 20)
   return results
 }

@@ -3,7 +3,7 @@ import qs from 'qs'
 export async function fetcherGoogleMap(
   path: string,
   urlParamsObject = {},
-  options = {}
+  options = {},
 ) {
   if (!process.env.GOOGLE_API_KEY) {
     throw new Error('No Google Api Key')
@@ -36,7 +36,7 @@ export async function fetcherGoogleMap(
   } catch (error) {
     console.error(error)
     throw new Error(
-      `Please check if your server is running and you set all the required tokens.`
+      `Please check if your server is running and you set all the required tokens.`,
     )
   }
 }
