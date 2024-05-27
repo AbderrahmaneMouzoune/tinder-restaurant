@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -6,18 +8,61 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { zodResolver } from '@hookform/resolvers/zod'
 import React from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+
+const formSchema = z.object({
+  username: z.string().min(2).max(100),
+})
 
 export default function CreateRoom() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  })
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values)
+  }
+
   return (
     <Card>
       <CardHeader>
         <CardTitle>Créer une room</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-2">
-        <Input placeholder="mon super pseudo" />
-        <Button className="w-full">Créer ma room</Button>
+
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pseudo</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Entrer un pseudo" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <Button type="submit" className="w-full">
+              Créer ma room
+            </Button>
+          </form>
+        </Form>
       </CardContent>
     </Card>
   )

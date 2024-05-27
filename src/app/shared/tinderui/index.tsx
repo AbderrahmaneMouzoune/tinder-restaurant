@@ -13,6 +13,10 @@ export default function TinderUi() {
       ).then((res) => res.json()),
   })
 
+  if (isPending) {
+    return <h1>Loading...</h1>
+  }
+
   if (error) {
     return (
       <h1>
@@ -20,10 +24,6 @@ export default function TinderUi() {
         de {location.latitude} et {location.longitude}
       </h1>
     )
-  }
-
-  if (isPending) {
-    return <h1>Loading...</h1>
   }
 
   if (!data || data.restaurants.length === 0) {
