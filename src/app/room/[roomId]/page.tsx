@@ -10,5 +10,5 @@ export default async function PageRoot({
   }
 }) {
   // const room = await getRoom(params.roomId)
-  return <Room id={params.roomId} hostName={'Fake hostname'} />
+  return <Room id={params.roomId} hostName={params.roomId} />
 }
