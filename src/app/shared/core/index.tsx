@@ -1,8 +1,7 @@
 'use client'
-import { useGeoLocation } from '@/utils/context/GeoLocationContext'
-import React from 'react'
-import TinderUi from '@/app/shared/tinderui'
 import Generator from '@/app/shared/generator'
+import TinderUi from '@/app/shared/tinderui'
+import { useGeoLocation } from '@/utils/context/GeoLocationContext'
 
 export default function Core() {
   const { location } = useGeoLocation()

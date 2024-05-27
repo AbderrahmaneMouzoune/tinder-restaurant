@@ -1,10 +1,7 @@
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
-import React from 'react'
-import Image from 'next/image'
-import { Button } from '@/components/ui/button'
-import useWebShare from '@/utils/hook/useWebShare'
 import { websiteUrl } from '@/app/config'
 import ShareButton from '@/components/share-button'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
 
 export default function Room({ id, hostName }: Room) {
   return (

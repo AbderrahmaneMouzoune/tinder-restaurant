@@ -1,5 +1,4 @@
 import Room from '@/app/shared/room/room'
-import React from 'react'
 // import { getRoom } from '@/lib/services/room'
 
 export default async function PageRoot({
