@@ -8,15 +8,17 @@ export default function Core() {
   const isLocationValid = (location: TLocation) => {
     return location.latitude && location.longitude
   }
+  // if (isLocationValid(location)) {
+  //   return <TinderUi />
+  // }
 
   if (isLocationValid(location)) {
-    return <TinderUi />
+    return (
+      <h2 className="text-xl text-center">
+        Commencer la room pour {location.latitude} / {location.longitude}
+      </h2>
+    )
   }
 
-  return (
-    <section>
-      <h1 className="text-center text-2xl font-bold">Tinder restaurant</h1>
-      <Generator />
-    </section>
-  )
+  return <Generator />
 }
