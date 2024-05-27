@@ -8,7 +8,7 @@ interface GeoLocationContextProps {
 }
 
 const GeoLocationContext = createContext<GeoLocationContextProps | undefined>(
-  undefined
+  undefined,
 )
 
 const GeoLocationProvider: React.FC<{ children: ReactNode }> = ({

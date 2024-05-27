@@ -9,7 +9,7 @@ export default function TinderUi() {
     queryKey: ['getRestaurants'],
     queryFn: () =>
       fetch(
-        `/api/restaurant/nearby?latitude=${location.latitude}&longitude=${location.longitude}`
+        `/api/restaurant/nearby?latitude=${location.latitude}&longitude=${location.longitude}`,
       ).then((res) => res.json()),
   })
 

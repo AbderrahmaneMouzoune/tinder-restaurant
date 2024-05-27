@@ -15,7 +15,7 @@ export default function RestaurantSlider({ restaurants }: Props) {
     currentRestaurant === null ? null : restaurants[currentRestaurant]
 
   const goToNextRestaurant = (
-    currentRestaurantScore: RestaurantScore
+    currentRestaurantScore: RestaurantScore,
   ): void => {
     if (currentRestaurant === null || currentRestaurantInformation === null) {
       return
