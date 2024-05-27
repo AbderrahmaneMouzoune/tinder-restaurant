@@ -4,10 +4,11 @@ import { v4 as uuidv4 } from 'uuid'
 let rooms: Room[] = [{ id: 'happyHippo', hostName: 'skulbraz' }]
 
 export async function POST(request: NextRequest) {
-  const { name } = await request.json()
+  const { hostName } = await request.json()
   const roomId = uuidv4()
-  const newRoom: Room = { id: roomId, hostName: name }
+  const newRoom: Room = { id: roomId, hostName }
   rooms.push(newRoom)
+
   return NextResponse.json(newRoom)
 }
 
