@@ -1,3 +1,4 @@
+import Room from '@/app/shared/room/room'
 import React from 'react'
 // import { getRoom } from '@/lib/services/room'
 
@@ -9,5 +10,5 @@ export default async function PageRoot({
   }
 }) {
   // const room = await getRoom(params.roomId)
-  return <h1>Hello from room : {params.roomId}</h1>
+  return <Room id={params.roomId} hostName={'Fake hostname'} />
 }
