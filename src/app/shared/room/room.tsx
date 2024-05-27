@@ -2,6 +2,7 @@ import { websiteUrl } from '@/app/config'
 import ShareButton from '@/components/share-button'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
+import Link from 'next/link'
 
 export default function Room({ id, hostName }: Room) {
   return (
@@ -26,7 +27,9 @@ export default function Room({ id, hostName }: Room) {
         >
           Partager le lien
         </ShareButton>
-        <Button>Lancer la session</Button>
+        <Button asChild>
+          <Link href={'/'}>Lancer la session</Link>
+        </Button>
       </section>
     </>
   )
