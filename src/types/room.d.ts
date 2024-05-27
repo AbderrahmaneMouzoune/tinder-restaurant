@@ -1,4 +1,6 @@
+type RoomId = string
+
 type Room = {
-  id: string
+  id: RoomId
   hostName: string
 }

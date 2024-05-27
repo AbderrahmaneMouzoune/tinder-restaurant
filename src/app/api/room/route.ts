@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { v4 as uuidv4 } from 'uuid'
+import { nanoid } from 'nanoid'
 
 let rooms: Room[] = [{ id: 'happyHippo', hostName: 'skulbraz' }]
 
 export async function POST(request: NextRequest) {
   const { hostName } = await request.json()
-  const roomId = uuidv4()
+  const roomId = nanoid(10)
   const newRoom: Room = { id: roomId, hostName }
   rooms.push(newRoom)
 
