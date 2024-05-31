@@ -3,8 +3,9 @@ import ShareButton from '@/components/share-button'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import Link from 'next/link'
+import { Room as RoomProps } from '@/db/schema'
 
-export default function Room({ id, hostName }: Room) {
+export default function Room({ id, hostName, shareCode }: RoomProps) {
   return (
     <>
       <h1 className="text-center py-2">Room of {hostName}</h1>
@@ -21,7 +22,7 @@ export default function Room({ id, hostName }: Room) {
       </section>
       <section className="mx-auto p-2 flex flex-col gap-2">
         <ShareButton
-          url={`${websiteUrl}/room/${id}`}
+          url={`${websiteUrl}/room/${shareCode}`}
           title={`Rejoignez la room de ${hostName}`}
           text={''}
         >
@@ -35,7 +36,7 @@ export default function Room({ id, hostName }: Room) {
   )
 }
 
-function Participant({ name, avatar }: Participant) {
+function Participant({ name, avatar }: { name: string; avatar: string }) {
   return (
     <Card>
       <CardContent className="w-full pt-2 pb-2">

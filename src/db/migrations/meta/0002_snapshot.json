@@ -1,0 +1,51 @@
+{
+  "id": "e524224c-b720-4d98-b6f1-53a7c15f473d",
+  "prevId": "338a0cf6-229c-47a0-ba90-1cc81991060b",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.rooms": {
+      "name": "rooms",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "hostName": {
+          "name": "hostName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "shareCode": {
+          "name": "shareCode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "rooms_shareCode_unique": {
+          "name": "rooms_shareCode_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "shareCode"
+          ]
+        }
+      }
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

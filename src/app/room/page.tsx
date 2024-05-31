@@ -1,7 +1,8 @@
-import { getRooms } from '@/actions/roomAction'
+import { getAllRooms } from '@/lib/services/room'
+import Link from 'next/link'
 
 export default async function Page() {
-  const rooms = await getRooms()
+  const rooms = await getAllRooms()
 
   return (
     <section>
@@ -10,7 +11,8 @@ export default async function Page() {
       <ul>
         {rooms.map((room) => (
           <li key={room.id}>
-            {room.hostName} - {room.shareCode}
+            {room.hostName} -{' '}
+            <Link href={`/room/${room.shareCode}`}>{room.shareCode}</Link>
           </li>
         ))}
       </ul>
