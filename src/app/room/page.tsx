@@ -1,32 +1,11 @@
-import { db } from '@/db'
-import { RoomsTable } from '@/db/schema'
-import React from 'react'
+import { getRooms } from '@/actions/roomAction'
 
 export default async function Page() {
-  let rooms
-  let startTime = Date.now()
+  const rooms = await getRooms()
 
-  try {
-    rooms = await db.select().from(RoomsTable)
-  } catch (e: any) {
-    if (e.message === `relation "room" does not exist`) {
-      console.log(
-        `Table does not exist, creating and seeding it with dummy data now...`
-      )
-
-      startTime = Date.now()
-      rooms = await db.select().from(RoomsTable)
-    } else {
-      throw e
-    }
-  }
-
-  const duration = Date.now() - startTime
   return (
     <section>
-      <h1>
-        Fetched {rooms.length} in {duration.toLocaleString()}
-      </h1>
+      <h1>Fetched {rooms.length}</h1>
 
       <ul>
         {rooms.map((room) => (
