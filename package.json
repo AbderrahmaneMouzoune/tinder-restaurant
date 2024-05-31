@@ -7,11 +7,12 @@
     "build": "next build",
     "prettier": "bunx prettier . --write",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "npx drizzle-kit generate -- dotenv_config_path='.env.local'",
+    "db:migrate": "npx drizzle-kit push -- dotenv_config_path='.env.local'"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.4.2",
-    "@neondatabase/serverless": "^0.9.3",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@tanstack/react-query": "^5.37.1",
@@ -40,6 +41,7 @@
     "@types/node": "^20.12.7",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "dotenv": "^16.4.5",
     "drizzle-kit": "^0.22.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",

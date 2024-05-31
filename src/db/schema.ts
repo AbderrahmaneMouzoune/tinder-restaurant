@@ -1,6 +1,11 @@
-import { integer, text, boolean, pgTable } from 'drizzle-orm/pg-core'
+import { InferInsertModel, InferSelectModel } from 'drizzle-orm'
+import { pgTable, serial, text } from 'drizzle-orm/pg-core'
 
-export const room = pgTable('room', {
-  id: integer('id').primaryKey(),
+export const RoomsTable = pgTable('room', {
+  id: serial('id').primaryKey(),
   hostName: text('text').notNull(),
+  shareCode: text('text').notNull(),
 })
+
+export type Room = InferSelectModel<typeof RoomsTable>
+export type NewRoom = InferInsertModel<typeof RoomsTable>
