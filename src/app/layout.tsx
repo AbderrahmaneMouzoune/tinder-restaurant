@@ -26,7 +26,7 @@ export default function RootLayout({
         className={cn(
           'min-h-screen bg-background font-sans antialiased',
           'bg-gray-100 dark:bg-gray-900',
-          fontSans.variable
+          fontSans.variable,
         )}
       >
         <Providers>

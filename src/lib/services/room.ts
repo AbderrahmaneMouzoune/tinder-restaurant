@@ -19,7 +19,7 @@ export async function createRoom(room: z.infer<typeof createRoomSchema>) {
 }
 
 export async function getRoomByShareCode(
-  shareCode: string
+  shareCode: string,
 ): Promise<Room | null> {
   const room = await db
     .select()

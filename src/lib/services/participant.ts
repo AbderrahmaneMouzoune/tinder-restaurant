@@ -8,7 +8,7 @@ import { z } from 'zod'
 
 export async function createParticipant(
   participant: z.infer<typeof createParticipantSchema>,
-  roomId: string
+  roomId: string,
 ) {
   const newParticipant: NewParticipant = {
     userName: participant.username,

@@ -62,9 +62,7 @@
         "rooms_shareCode_unique": {
           "name": "rooms_shareCode_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "shareCode"
-          ]
+          "columns": ["shareCode"]
         }
       }
     }

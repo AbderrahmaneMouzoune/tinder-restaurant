@@ -33,12 +33,8 @@
           "name": "participants_room_shareCode_rooms_shareCode_fk",
           "tableFrom": "participants",
           "tableTo": "rooms",
-          "columnsFrom": [
-            "room_shareCode"
-          ],
-          "columnsTo": [
-            "shareCode"
-          ],
+          "columnsFrom": ["room_shareCode"],
+          "columnsTo": ["shareCode"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -76,9 +72,7 @@
         "rooms_shareCode_unique": {
           "name": "rooms_shareCode_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "shareCode"
-          ]
+          "columns": ["shareCode"]
         }
       }
     }

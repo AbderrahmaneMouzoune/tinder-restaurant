@@ -34,7 +34,7 @@ export default function CreateParticipant({ roomCode }: { roomCode: string }) {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit((participant) =>
-              createParticipant(participant, roomCode)
+              createParticipant(participant, roomCode),
             )}
             className="space-y-2"
           >
