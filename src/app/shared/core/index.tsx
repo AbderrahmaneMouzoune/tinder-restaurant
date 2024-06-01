@@ -1,6 +1,5 @@
 'use client'
 import Generator from '@/app/shared/generator'
-import TinderUi from '@/app/shared/tinderui'
 import { useGeoLocation } from '@/utils/context/GeoLocationContext'
 
 export default function Core() {

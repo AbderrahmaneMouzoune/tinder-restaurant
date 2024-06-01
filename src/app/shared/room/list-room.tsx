@@ -1,5 +1,6 @@
 'use client'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Room } from '@/db/schema'
 import { useQuery } from '@tanstack/react-query'
 
 export default function ListRoom() {

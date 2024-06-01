@@ -1,12 +1,12 @@
 'use server'
 
 import { createRoomSchema } from '@/app/shared/room/create-room'
-import { redirect } from 'next/navigation'
-import { z } from 'zod'
 import { db } from '@/db'
-import { Room, rooms, insertRoomSchema, participants } from '@/db/schema'
+import { participants, Room, rooms } from '@/db/schema'
 import { generateUniqueCode } from '@/lib/generate-unique-code'
 import { eq } from 'drizzle-orm'
+import { redirect } from 'next/navigation'
+import { z } from 'zod'
 
 export async function createRoom(room: z.infer<typeof createRoomSchema>) {
   const shareCode = generateUniqueCode()
