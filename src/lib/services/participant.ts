@@ -3,6 +3,7 @@
 import { createParticipantSchema } from '@/app/shared/participant/create-participant'
 import { db } from '@/db'
 import { NewParticipant, participants } from '@/db/schema'
+import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
 export async function createParticipant(
@@ -13,5 +14,7 @@ export async function createParticipant(
     userName: participant.username,
     roomId,
   }
-  return db.insert(participants).values(newParticipant)
+  await db.insert(participants).values(newParticipant)
+
+  redirect(`/room/${roomId}`)
 }
