@@ -1,7 +1,7 @@
 import { getAllRooms } from '@/lib/services/room'
 import Link from 'next/link'
 
-export default async function Page() {
+export default async function PageRoot() {
   const rooms = await getAllRooms()
 
   return (

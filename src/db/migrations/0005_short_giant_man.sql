@@ -1,0 +1,1 @@
+ALTER TABLE "participants" ADD COLUMN "room_shareCode" text;

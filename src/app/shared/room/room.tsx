@@ -22,7 +22,7 @@ export default function Room({ id, hostName, shareCode }: RoomProps) {
       </section>
       <section className="mx-auto p-2 flex flex-col gap-2">
         <ShareButton
-          url={`${websiteUrl}/room/${shareCode}`}
+          url={`${websiteUrl}/room/join/${shareCode}`}
           title={`Rejoignez la room de ${hostName}`}
           text={''}
         >

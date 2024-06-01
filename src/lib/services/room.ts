@@ -4,7 +4,7 @@ import { createRoomSchema } from '@/app/shared/room/create-room'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
 import { db } from '@/db'
-import { Room, rooms } from '@/db/schema'
+import { Room, rooms, insertRoomSchema } from '@/db/schema'
 import { generateUniqueCode } from '@/lib/generate-unique-code'
 import { eq } from 'drizzle-orm'
 
