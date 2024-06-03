@@ -2,7 +2,7 @@
 
 ## A date
 
-Application qui depuis une position géographique récupère N restaurants autour afin de les afficher comme sur tinder. On peux par la suite liker/superlike ou dislike les restaurants.
+Application qui depuis une position géographique récupère N restaurants autour afin de les afficher comme sur tinder. On peut par la suite liker/superlike ou dislike les restaurants.
 
 ## A venir
 
