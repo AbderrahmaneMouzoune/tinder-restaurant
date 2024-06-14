@@ -1,43 +1,44 @@
 'use client'
+import { Button } from '@/components/ui/button'
 import { socket } from '@/socket'
-import React, { useEffect, useState } from 'react'
+import { nanoid } from 'nanoid'
+import { useState } from 'react'
 
 export default function Page() {
-  const [isConnected, setIsConnected] = useState(false)
-  const [transport, setTransport] = useState('N/A')
+  const [room, setRoom] = useState<Room>()
 
-  useEffect(() => {
-    if (socket.connected) {
-      onConnect()
+  const onCreateRoom = () => {
+    const roomId = nanoid(10)
+    const newRoom: Room = {
+      id: roomId,
+      host: {
+        username: 'skulbraz',
+      },
+      restaurants: [],
+      participants: [],
     }
 
-    function onConnect() {
-      setIsConnected(true)
-      setTransport(socket.io.engine.transport.name)
+    socket.emit('create-room', newRoom)
+  }
 
-      socket.io.engine.on('upgrade', (transport) => {
-        setTransport(transport.name)
-      })
-    }
+  socket.on('room-created', (room: Room, rooms: Room[]) => {
+    setRoom(room)
+    console.log(rooms)
+  })
 
-    function onDisconnect() {
-      setIsConnected(false)
-      setTransport('N/A')
-    }
-
-    socket.on('connect', onConnect)
-    socket.on('disconnect', onDisconnect)
-
-    return () => {
-      socket.off('connect', onConnect)
-      socket.off('disconnect', onDisconnect)
-    }
-  }, [])
+  socket.on('room-exists', (err) => {
+    console.log(err)
+  })
 
   return (
     <div>
-      <p>Status: {isConnected ? 'connected' : 'disconnected'}</p>
-      <p>Transport: {transport}</p>
+      <Button onClick={onCreateRoom}>Create a room</Button>
+
+      {room && (
+        <p>
+          Room {room.id} created by {room.host.username}
+        </p>
+      )}
     </div>
   )
 }

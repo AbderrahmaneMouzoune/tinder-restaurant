@@ -1,11 +1,10 @@
-type RoomId = string
-
 type Room = {
   id: RoomId
-  hostName: string
+  host: Profile
+  restaurants: Restaurant[]
+  participants: Profile[]
 }
 
-type Participant = {
-  name: string
-  avatar: string
+type Profile = {
+  username: string
 }

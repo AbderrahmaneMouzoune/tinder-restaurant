@@ -1,5 +1,6 @@
+type RoomId = string
 type Room = {
-  id: string
+  id: RoomId
   host: Profile
   restaurants: Restaurant[]
   participants: Profile[]

@@ -12,8 +12,10 @@ import {
 import { Input } from '@/components/ui/input'
 import { createRoom } from '@/lib/services/room/create-room'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { nanoid } from 'nanoid'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { socket } from '@/socket'
 
 export const createRoomSchema = z.object({
   username: z.string().min(2).max(100),
@@ -33,7 +35,7 @@ export default function CreateRoom() {
       <CardContent>
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit((room) => createRoom(room))}
+            onSubmit={form.handleSubmit((room) => onCreateRoom(room))}
             className="space-y-2"
           >
             <FormField

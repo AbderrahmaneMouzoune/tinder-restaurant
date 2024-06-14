@@ -1,9 +1,10 @@
 import { createServer } from 'node:http'
 import { Server as IOServer, Socket } from 'socket.io'
 import { io as ioc, Socket as ClientSocket } from 'socket.io-client'
-import { onCreateRoom } from '../events/room'
+import onCreateRoom from '../events/room'
 import { ALL_ROOMS } from '../server'
 
+// TODO: Make those test work
 function waitFor(socket: Socket, event: string) {
   return new Promise((resolve) => {
     socket.once(event, resolve)

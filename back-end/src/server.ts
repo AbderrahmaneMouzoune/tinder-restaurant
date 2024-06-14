@@ -1,7 +1,7 @@
 import express from 'express'
 import { createServer } from 'node:http'
 import { Server, Socket } from 'socket.io'
-import { onCreateRoom } from './events/room'
+import onCreateRoom from './events/room'
 
 const app = express()
 const server = createServer(app)
@@ -17,11 +17,14 @@ const io = new Server(server, {
 export const ALL_ROOMS: Record<string, Room> = {}
 
 io.on('connection', (socket: Socket) => {
-  console.log('someone connect')
+  console.log('someone connect', socket.id)
 
+  // TODO: check that room is well formatted
   socket.on('create-room', (room: Room) => {
     onCreateRoom(socket, room)
   })
+
+  // TODO: join room
 })
 
 server.listen(PORT, () => {
