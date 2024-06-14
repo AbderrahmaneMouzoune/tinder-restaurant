@@ -1,6 +1,7 @@
 import express from 'express'
 import { createServer } from 'node:http'
-import { Server } from 'socket.io'
+import { Server, Socket } from 'socket.io'
+import { onCreateRoom } from './events/room'
 
 const app = express()
 const server = createServer(app)
@@ -13,11 +14,13 @@ const io = new Server(server, {
   },
 })
 
-io.on('connection', (socket) => {
+export const ALL_ROOMS: Record<string, Room> = {}
+
+io.on('connection', (socket: Socket) => {
   console.log('someone connect')
 
-  socket.on('join-room', (roomId) => {
-    console.log(`Room ${roomId} joined`)
+  socket.on('create-room', (room: Room) => {
+    onCreateRoom(socket, room)
   })
 })
 
