@@ -6,8 +6,8 @@ export default function Home() {
   return (
     <main className="min-h-screen p-5 space-y-5">
       <h1 className="text-center text-2xl font-bold">Tinder restaurant</h1>
-      <Core />
       <CreateRoom />
+      <Core />
       {/* <ListRoom /> */}
     </main>
   )
