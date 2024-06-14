@@ -9,6 +9,12 @@ interface Restaurant {
   photo: GoogleMapsPhotos
 }
 
+interface GoogleMapsPhotos {
+  height: number
+  photo_reference: string
+  width: number
+}
+
 type RestaurantWithScore = Restaurant & {
   score: RestaurantScore
 }
