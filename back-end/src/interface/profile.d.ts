@@ -1,0 +1,3 @@
+type Profile = {
+  username: string
+}

@@ -13,12 +13,6 @@ const io = new Server(server, {
   },
 })
 
-app.get('/', (req, res) => {
-  res.json({
-    message: 'aaas',
-  })
-})
-
 io.on('connection', (socket) => {
   console.log('someone connect')
 
