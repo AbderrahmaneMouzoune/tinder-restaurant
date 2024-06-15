@@ -8,6 +8,9 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*.ts"],
