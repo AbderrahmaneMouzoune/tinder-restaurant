@@ -1,6 +1,5 @@
 'use client'
-import { socket } from '@/socket'
-import React, { useEffect, useState } from 'react'
+import useGetRoomInfo from '@/utils/hook/useGetRoomInfo'
 
 type PageProps = {
   params: {
@@ -9,13 +8,7 @@ type PageProps = {
 }
 
 export default function Page({ params }: PageProps) {
-  const [room, setRoom] = useState<Room | null>(null)
-
-  useEffect(() => {
-    socket.emit('room.get', params.roomId)
-  }, [params.roomId])
-
-  socket.on('room.get.success', (room: Room) => setRoom(room))
+  const { room } = useGetRoomInfo(params.roomId)
 
   if (room === null) {
     return <h1>Sadly no room look like : {params.roomId}</h1>
