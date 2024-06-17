@@ -1,6 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/button'
 import { socket } from '@/socket'
+import Link from 'next/link'
 import { useState } from 'react'
 
 export default function Page() {
@@ -23,7 +24,11 @@ export default function Page() {
         rooms?.length > 0 &&
         rooms?.map((room) => (
           <p key={room.id}>
-            Room {room.id} created by {room.host.username}
+            Room{' '}
+            <Link href={`/socket/rooms/${room.id}`} target="_blank">
+              {room.id}
+            </Link>{' '}
+            created by {room.host.username}{' '}
           </p>
         ))}
     </div>
