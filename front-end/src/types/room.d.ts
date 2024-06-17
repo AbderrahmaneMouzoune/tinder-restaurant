@@ -1,3 +1,5 @@
+type RoomId = string
+
 type Room = {
   id: RoomId
   host: Profile

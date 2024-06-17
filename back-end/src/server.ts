@@ -1,7 +1,7 @@
 import express from 'express'
 import { createServer } from 'node:http'
 import { Server, Socket } from 'socket.io'
-import { onRoomCreate, onRoomJoin } from '@/events/room/room'
+import { onRoomCreate, onRoomJoin, onRoomListing } from '@/events/room/room'
 import { events } from './events'
 
 const app = express()
@@ -15,11 +15,9 @@ const io = new Server(server, {
   },
 })
 
-export const ALL_ROOMS: Record<string, Room> = {}
+export const ALL_ROOMS: Room[] = []
 
 io.on('connection', (socket: Socket) => {
-  console.log('someone connect', socket.id)
-
   // TODO: check that room is well formatted
   socket.on(events.room.create.event, (room: Room) => {
     onRoomCreate(socket, room)
@@ -28,6 +26,10 @@ io.on('connection', (socket: Socket) => {
   // TODO: join room
   socket.on(events.room.join.event, (roomId: RoomId, person: Profile) => {
     onRoomJoin(socket, roomId, person)
+  })
+
+  socket.on(events.room.get.event, (roomId?: RoomId) => {
+    onRoomListing(socket, roomId)
   })
 })
 

@@ -18,15 +18,17 @@ export default function Page() {
       participants: [],
     }
 
-    socket.emit('create-room', newRoom)
+    socket.emit('room.create', newRoom)
   }
 
-  socket.on('room-created', (room: Room, rooms: Room[]) => {
-    setRoom(room)
-    console.log(rooms)
-  })
+  socket.on(
+    'room.create.success',
+    (room: Room, rooms: Record<RoomId, Room>) => {
+      setRoom(room)
+    }
+  )
 
-  socket.on('room-exists', (err) => {
+  socket.on('room.create.failed', (err) => {
     console.log(err)
   })
 

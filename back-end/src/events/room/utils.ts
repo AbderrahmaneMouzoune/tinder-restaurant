@@ -17,29 +17,55 @@ export const roomEvent = {
   join: {
     event: 'room.join',
   },
+  get: {
+    event: 'room.get',
+    success: 'room.get.success',
+    failed: 'room.get.failed',
+  },
 }
 
-export function roomExist(roomId: RoomId): boolean {
-  return Boolean(ALL_ROOMS[roomId])
+function findRoomIndexById(roomId: RoomId) {
+  return ALL_ROOMS.findIndex((room) => room.id === roomId)
 }
 
-export function addRoom(room: Room): boolean {
-  ALL_ROOMS[room.id] = room
-  return roomExist(room.id)
+function withRoom(roomId: RoomId, callback: (room: Room) => void): boolean {
+  const room = getRoomById(roomId)
+  if (!room) return false
+  callback(room)
+  return true
 }
 
-export function addParticipantToRoom(
-  roomId: RoomId,
-  participant: Profile
+export function getRoomById(roomId: RoomId): Room | null {
+  const index = findRoomIndexById(roomId)
+  return index === -1 ? null : ALL_ROOMS[index]
+}
+
+export function getAllRoom() {
+  return ALL_ROOMS
+}
+
+export function addOneRoom(room: Room) {
+  return ALL_ROOMS.push(room)
+}
+
+export function deleteOneRoom(roomId: RoomId): boolean {
+  return withRoom(roomId, (room) => {
+    const index = ALL_ROOMS.indexOf(room)
+    ALL_ROOMS.splice(index, 1)
+  })
+}
+
+export function updateOneRoom(updatedRoom: Room): boolean {
+  return withRoom(updatedRoom.id, (room) => {
+    Object.assign(room, updatedRoom)
+  })
+}
+
+export function addOneParticipantToRoom(
+  participant: Profile,
+  roomId: RoomId
 ): boolean {
-  const previousRoom: Room = ALL_ROOMS[roomId]
-
-  ALL_ROOMS[roomId] = {
-    ...previousRoom,
-    participants: [...previousRoom.participants, participant],
-  }
-
-  return ALL_ROOMS[roomId].participants.some(
-    (p) => p.username === participant.username
-  )
+  return withRoom(roomId, (room) => {
+    room.participants.push(participant)
+  })
 }
