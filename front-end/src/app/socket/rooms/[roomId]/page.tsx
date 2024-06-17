@@ -1,4 +1,5 @@
 'use client'
+
 import useGetRoomInfo from '@/utils/hook/useGetRoomInfo'
 
 type PageProps = {

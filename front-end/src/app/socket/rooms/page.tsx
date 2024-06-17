@@ -1,36 +1,29 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import { socket } from '@/socket'
+import useRooms from '@/utils/hook/useRooms'
 import Link from 'next/link'
-import { useState } from 'react'
 
 export default function Page() {
-  const [rooms, setRooms] = useState<Room[]>()
-
-  const onGetRooms = () => {
-    socket.emit('room.get')
-  }
-
-  socket.on('room.get.success', (roomsFromServer: Room[]) =>
-    setRooms(roomsFromServer)
-  )
-  socket.on('room.get.failed', (err) => console.log(err))
+  const { rooms, getRooms } = useRooms()
 
   return (
     <div>
-      <Button onClick={onGetRooms}>Get all rooms</Button>
+      <Button onClick={getRooms}>Refresh rooms</Button>
 
-      {rooms &&
-        rooms?.length > 0 &&
-        rooms?.map((room) => (
-          <p key={room.id}>
-            Room{' '}
-            <Link href={`/socket/rooms/${room.id}`} target="_blank">
-              {room.id}
-            </Link>{' '}
-            created by {room.host.username}{' '}
-          </p>
-        ))}
+      <h1>Il y a {rooms.length} rooms</h1>
+
+      {rooms && rooms.length > 0 && (
+        <ul className="list-item">
+          {rooms.map((room) => (
+            <li key={room.id}>
+              <Link href={`/socket/rooms/${room.id}`} target="_blank">
+                [{room.id}] - created by {room.host.username}, (
+                {room.participants.length}P)
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }

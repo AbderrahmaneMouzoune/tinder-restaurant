@@ -15,7 +15,8 @@ export function onRoomCreate(socket: Socket, room: Room) {
   }
 
   if (addOneRoom(room)) {
-    socket.join(room.id)
+    console.log(`User (${room.host.username}) created ${room.id}`)
+
     return socket.emit(
       events.room.create.success,
       getRoomById(room.id),
