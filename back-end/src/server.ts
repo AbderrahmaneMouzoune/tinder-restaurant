@@ -15,15 +15,26 @@ const io = new Server(server, {
   },
 })
 
-export const ALL_ROOMS: Room[] = []
+app.use(express.json())
+
+export const ALL_ROOMS: Room[] = [
+  {
+    id: 'lalala',
+    host: {
+      username: 'Terminator',
+    },
+    restaurants: [],
+    participants: [],
+  },
+]
 
 io.on('connection', (socket: Socket) => {
-  // TODO: check that room is well formatted
+  console.log(`Someone logged in: ${socket.id}`)
+
   socket.on(events.room.create.event, (room: Room) => {
     onRoomCreate(socket, room)
   })
 
-  // TODO: join room
   socket.on(events.room.join.event, (roomId: RoomId, person: Profile) => {
     onRoomJoin(socket, roomId, person)
   })
@@ -31,8 +42,14 @@ io.on('connection', (socket: Socket) => {
   socket.on(events.room.get.event, (roomId?: RoomId) => {
     onRoomListing(socket, roomId)
   })
+
+  socket.on('disconnect', () => {
+    console.log(`Someone disconnected: ${socket.id}`)
+  })
 })
 
 server.listen(PORT, () => {
-  console.log(`server running at http://localhost:${PORT}`)
+  console.log(
+    `server running at http://localhost:${PORT} with ${ALL_ROOMS.length} room`
+  )
 })

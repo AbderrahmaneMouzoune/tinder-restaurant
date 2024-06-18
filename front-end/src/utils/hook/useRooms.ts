@@ -29,6 +29,7 @@ function useRooms(): {
   }
 
   const createRoom = (room: Room): boolean => {
+    socket.emit('room.create', room)
     return true
   }
 

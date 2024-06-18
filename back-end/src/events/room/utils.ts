@@ -16,6 +16,8 @@ export const roomEvent = {
   },
   join: {
     event: 'room.join',
+    success: 'room.join.success',
+    failed: 'room.join.failed',
   },
   get: {
     event: 'room.get',

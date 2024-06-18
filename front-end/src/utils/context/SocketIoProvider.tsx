@@ -31,11 +31,13 @@ export function ProvideSocketIoClient({ roomId, children }: Props) {
 function useProvideSocketIoClient(roomId: RoomId) {
   const clientRef = useRef<SocketIoClient | null>(null)
   const [connected, setConnected] = useState<boolean>(false)
+
   if (typeof window === 'undefined') return
+
   const url = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:5000'
   const config = {
     url,
-    token: roomId,
+    token: '',
   }
 
   if (!clientRef.current) {

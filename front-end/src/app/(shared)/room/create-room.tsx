@@ -13,7 +13,7 @@ export default function CreateRoom() {
   const router = useRouter()
   const { createRoom } = useRooms()
 
-  const onCreateRoom = () => {
+  const onCreateRoom = async () => {
     const roomId = nanoid(10)
     const newRoom: Room = {
       id: roomId,
@@ -21,7 +21,10 @@ export default function CreateRoom() {
       restaurants: restaurants,
       participants: [],
     }
-    if (createRoom(newRoom)) router.push(`/room/${roomId}`)
+    const redirectId = await createRoom(newRoom)
+    if (redirectId !== null) {
+      router.push(`/room/lalala`)
+    }
   }
 
   return (
