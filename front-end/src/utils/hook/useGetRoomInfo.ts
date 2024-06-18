@@ -1,22 +1,21 @@
-import { socket } from '@/socket'
 import { useEffect, useState } from 'react'
+import { useSocketIoClient } from './useSocketIoClient'
 
 function useGetRoomInfo(roomId: RoomId): Room | null {
   const [room, setRoom] = useState<Room | null>(null)
 
+  const clientSocket = useSocketIoClient()
+
   useEffect(() => {
-    const handleRoomGetSuccess = (room: Room) => {
-      console.log('Room ?', room)
-      setRoom(room)
-    }
+    if (!clientSocket) return
 
-    socket.emit('room.get', roomId)
-    socket.on('room.get.success', handleRoomGetSuccess)
-
-    return () => {
-      socket.off('room.get.success', handleRoomGetSuccess)
+    const receiveRoomHandler = (receivedRoom: Room) => {
+      setRoom(receivedRoom)
     }
-  }, [roomId])
+    clientSocket.send('room.get', roomId)
+
+    clientSocket.subscribe('room.get.success', receiveRoomHandler)
+  }, [clientSocket, roomId])
 
   return room
 }
