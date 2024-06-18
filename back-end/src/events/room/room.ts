@@ -17,7 +17,7 @@ export function onRoomCreate(socket: Socket, room: Room) {
   if (addOneRoom(room)) {
     console.log(`User (${room.host.username}) created ${room.id}`)
 
-    return socket.emit(
+    return socket.broadcast.emit(
       events.room.create.success,
       getRoomById(room.id),
       getAllRoom()
@@ -43,7 +43,7 @@ export function onRoomListing(socket: Socket, roomId?: RoomId) {
   console.log(`Someone want to retrieve ${roomId}`)
 
   if (!roomId) {
-    return socket.emit(events.room.get.success, getAllRoom())
+    return socket.broadcast.emit(events.room.get.success, getAllRoom())
   }
 
   const room = getRoomById(roomId)
@@ -53,6 +53,6 @@ export function onRoomListing(socket: Socket, roomId?: RoomId) {
   }
 
   if (roomId && room) {
-    return socket.emit(events.room.get.success, room)
+    return socket.broadcast.emit(events.room.get.success, room)
   }
 }

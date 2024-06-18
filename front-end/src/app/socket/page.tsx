@@ -21,12 +21,9 @@ export default function Page() {
     socket.emit('room.create', newRoom)
   }
 
-  socket.on(
-    'room.create.success',
-    (room: Room, rooms: Record<RoomId, Room>) => {
-      setRoom(room)
-    }
-  )
+  socket.on('room.create.success', (room: Room, rooms: Room[]) => {
+    setRoom(room)
+  })
 
   socket.on('room.create.failed', (err) => {
     console.log(err)
