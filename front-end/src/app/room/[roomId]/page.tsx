@@ -10,15 +10,8 @@ type PageProps = {
 
 export default function PageRoot({ params }: PageProps) {
   return (
-    <ProvideSocketIoClient>
-      <Room
-        id={params.roomId}
-        host={{
-          username: 'abd',
-        }}
-        restaurants={[]}
-        participants={[]}
-      />
+    <ProvideSocketIoClient roomId={params.roomId}>
+      <Room id={params.roomId} />
     </ProvideSocketIoClient>
   )
 }

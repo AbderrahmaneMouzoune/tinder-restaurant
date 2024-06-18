@@ -4,10 +4,19 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import Link from 'next/link'
 
-export default function Room({ id, host }: Room) {
+export default function Room({ id }: { id: RoomId }) {
+  const room: Room = {
+    id,
+    host: {
+      username: 'abd',
+    },
+    restaurants: [],
+    participants: [],
+  }
+
   return (
     <>
-      <h1 className="text-center py-2">Room of {host.username}</h1>
+      <h1 className="text-center py-2">Room of {room.host.username}</h1>
       <section className="grid grid-cols-2 p-2 gap-2">
         {Array.from({ length: 3 })
           .fill(null)
@@ -21,7 +30,7 @@ export default function Room({ id, host }: Room) {
       <section className="mx-auto p-2 flex flex-col gap-2">
         <ShareButton
           url={`${websiteUrl}/room/${id}`}
-          title={`Rejoignez la room de ${host.username}`}
+          title={`Rejoignez la room de ${room.host.username}`}
           text={''}
         >
           Partager le lien

@@ -10,11 +10,12 @@ export const socketIoContext = createContext<SocketIoContextValue>({
 })
 
 interface Props {
+  roomId: RoomId
   children: React.ReactNode
 }
 
-export function ProvideSocketIoClient({ children }: Props) {
-  const socketIo = useProvideSocketIoClient()
+export function ProvideSocketIoClient({ roomId, children }: Props) {
+  const socketIo = useProvideSocketIoClient(roomId)
 
   return (
     <socketIoContext.Provider
@@ -27,14 +28,14 @@ export function ProvideSocketIoClient({ children }: Props) {
     </socketIoContext.Provider>
   )
 }
-function useProvideSocketIoClient() {
+function useProvideSocketIoClient(roomId: RoomId) {
   const clientRef = useRef<SocketIoClient | null>(null)
   const [connected, setConnected] = useState<boolean>(false)
   if (typeof window === 'undefined') return
   const url = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:5000'
   const config = {
     url,
-    token: '',
+    token: roomId,
   }
 
   if (!clientRef.current) {
