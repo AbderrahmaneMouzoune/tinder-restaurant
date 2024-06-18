@@ -1,4 +1,6 @@
+'use client'
 import Room from '@/app/(shared)/room/room'
+import { ProvideSocketIoClient } from '@/utils/context/SocketIoProvider'
 
 type PageProps = {
   params: {
@@ -6,15 +8,17 @@ type PageProps = {
   }
 }
 
-export default async function PageRoot({ params }: PageProps) {
+export default function PageRoot({ params }: PageProps) {
   return (
-    <Room
-      id={params.roomId}
-      host={{
-        username: 'abd',
-      }}
-      restaurants={[]}
-      participants={[]}
-    />
+    <ProvideSocketIoClient>
+      <Room
+        id={params.roomId}
+        host={{
+          username: 'abd',
+        }}
+        restaurants={[]}
+        participants={[]}
+      />
+    </ProvideSocketIoClient>
   )
 }
