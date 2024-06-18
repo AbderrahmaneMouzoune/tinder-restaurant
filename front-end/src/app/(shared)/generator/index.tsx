@@ -1,7 +1,7 @@
 'use client'
 import GeocodeMapLocation from '@/components/geocode-map-location'
 import { Button } from '@/components/ui/button'
-import { DrawerFooter } from '@/components/ui/drawer'
+import { DrawerClose, DrawerFooter } from '@/components/ui/drawer'
 import {
   Form,
   FormControl,
@@ -74,28 +74,31 @@ export default function Generator() {
           </Button>
         </form>
       </Form>
-      <Button variant="outline" className="w-full mt-2" onClick={getLocation}>
-        <MapPin className="size-5 mr-2" />
-        Ou utilisé ma position
-      </Button>
+      <DrawerClose asChild>
+        <Button variant="outline" className="w-full mt-2" onClick={getLocation}>
+          <MapPin className="size-5 mr-2" />
+          Ou utilisé ma position
+        </Button>
+      </DrawerClose>
 
       <DrawerFooter>
         {places.length > 0 && (
           <ul className="space-y-1 mt-2 overflow-auto">
             {places.map((place) => (
-              <li
-                key={place.place_id}
-                onClick={() => {
-                  if (Number(place.lat) && Number(place.lon)) {
-                    updateLocation({
-                      longitude: Number(place.lon),
-                      latitude: Number(place.lat),
-                    })
-                  }
-                }}
-              >
-                <GeocodeMapLocation {...place} />
-              </li>
+              <DrawerClose key={place.place_id} asChild>
+                <li
+                  onClick={() => {
+                    if (Number(place.lat) && Number(place.lon)) {
+                      updateLocation({
+                        longitude: Number(place.lon),
+                        latitude: Number(place.lat),
+                      })
+                    }
+                  }}
+                >
+                  <GeocodeMapLocation {...place} />
+                </li>
+              </DrawerClose>
             ))}
           </ul>
         )}

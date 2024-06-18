@@ -1,4 +1,5 @@
 import React, { createContext, ReactNode, useContext, useState } from 'react'
+import { useRestaurants } from './RestaurantsContext'
 
 interface GeoLocationContextProps {
   location: TLocation
@@ -8,7 +9,7 @@ interface GeoLocationContextProps {
 }
 
 const GeoLocationContext = createContext<GeoLocationContextProps | undefined>(
-  undefined,
+  undefined
 )
 
 const GeoLocationProvider: React.FC<{ children: ReactNode }> = ({
@@ -20,8 +21,12 @@ const GeoLocationProvider: React.FC<{ children: ReactNode }> = ({
   })
   const [error, setError] = useState<string | null>(null)
 
+  const onLocationChange = (location: TLocation) => {
+    setLocation(location)
+  }
+
   const handleSuccess = (position: GeolocationPosition) => {
-    setLocation({
+    onLocationChange({
       latitude: position.coords.latitude,
       longitude: position.coords.longitude,
     })
@@ -42,7 +47,7 @@ const GeoLocationProvider: React.FC<{ children: ReactNode }> = ({
   }
 
   const updateLocation = ({ longitude, latitude }: TLocation) => {
-    return setLocation({
+    return onLocationChange({
       latitude,
       longitude,
     })

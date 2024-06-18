@@ -1,6 +1,5 @@
 'use client'
 import Generator from '@/app/(shared)/generator'
-import TinderUi from '@/app/(shared)/tinderui'
 import { Button } from '@/components/ui/button'
 import {
   Drawer,
@@ -9,13 +8,10 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
-import { useGeoLocation } from '@/utils/context/GeoLocationContext'
+import { useRestaurants } from '@/utils/context/RestaurantsContext'
+import { ReloadIcon } from '@radix-ui/react-icons'
 
 export default function Core() {
-  const { location } = useGeoLocation()
-  const isLocationValid = (location: TLocation) => {
-    return location.latitude && location.longitude
-  }
   // if (isLocationValid(location)) {
   //   return <TinderUi />
   // }
@@ -30,13 +26,7 @@ export default function Core() {
 
   return (
     <Drawer>
-      <DrawerTrigger asChild>
-        <Button className="w-full" variant={'outline'}>
-          {isLocationValid(location)
-            ? 'X Restaurants'
-            : 'Choisir la liste de restaurants'}
-        </Button>
-      </DrawerTrigger>
+      <RestaurantFinder />
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Entrer votre localisation</DrawerTitle>
@@ -44,5 +34,27 @@ export default function Core() {
         <Generator />
       </DrawerContent>
     </Drawer>
+  )
+}
+
+function RestaurantFinder() {
+  const { restaurants, isLoading } = useRestaurants()
+
+  if (isLoading) {
+    return (
+      <Button className="w-full" variant={'outline'} disabled>
+        <ReloadIcon className={'mr-2 size-4 animate-spin'} />
+        Récupération des restaurants
+      </Button>
+    )
+  }
+  return (
+    <DrawerTrigger asChild>
+      <Button className="w-full" variant={'outline'}>
+        {restaurants && restaurants.length > 0
+          ? `${restaurants.length} restaurants`
+          : `Choisir la liste de restaurants`}
+      </Button>
+    </DrawerTrigger>
   )
 }
