@@ -42,10 +42,12 @@ export function onRoomJoin(socket: Socket, roomId: RoomId, user: Profile) {
     ? events.room.participant.create.success
     : events.room.participant.create.failed
 
+  const room = getRoomById(roomId)
+
   console.log(`-> [${isParticipantJoined}] - isparticipant joined`)
   return socket.broadcast.emit(
     isParticipantJoined,
-    getRoomById(roomId)?.participants
+    room?.participants[room.participants.length - 1]
   )
 }
 

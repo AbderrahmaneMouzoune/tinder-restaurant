@@ -56,7 +56,7 @@ export default class SocketIoClient extends EventEmitter {
     this.socket?.on(event, (arg) => callback(arg))
   }
 
-  send<T>(event: string, data: T) {
-    this.socket?.emit(event, data)
+  send(event: string, ...args: any[]) {
+    this.socket?.emit(event, ...args)
   }
 }
