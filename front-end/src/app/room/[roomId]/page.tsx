@@ -1,5 +1,4 @@
 import Room from '@/app/(shared)/room/room'
-import { getRoom } from '@/lib/services/room/get-room'
 
 type PageProps = {
   params: {
@@ -8,6 +7,14 @@ type PageProps = {
 }
 
 export default async function PageRoot({ params }: PageProps) {
-  const room = await getRoom(params.roomId)
-  return <Room {...room} />
+  return (
+    <Room
+      id={params.roomId}
+      host={{
+        username: 'abd',
+      }}
+      restaurants={[]}
+      participants={[]}
+    />
+  )
 }

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 function useRooms(): {
   rooms: Room[]
   getRooms(): void
+  createRoom(room: Room): boolean
 } {
   const [rooms, setRooms] = useState<Room[]>([])
 
@@ -27,7 +28,11 @@ function useRooms(): {
     socket.emit('room.get')
   }
 
-  return { rooms, getRooms }
+  const createRoom = (room: Room): boolean => {
+    return true
+  }
+
+  return { rooms, getRooms, createRoom }
 }
 
 export default useRooms
