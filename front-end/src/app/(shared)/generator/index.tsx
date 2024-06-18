@@ -1,6 +1,7 @@
 'use client'
 import GeocodeMapLocation from '@/components/geocode-map-location'
 import { Button } from '@/components/ui/button'
+import { DrawerFooter } from '@/components/ui/drawer'
 import {
   Form,
   FormControl,
@@ -12,7 +13,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { useGeoLocation } from '@/utils/context/GeoLocationContext'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { LocateIcon } from 'lucide-react'
+import { LocateIcon, MapPin, NavigationIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -35,13 +36,13 @@ export default function Generator() {
       .then((response) => {
         if (!response.ok)
           throw new Error(
-            "Une erreur est survenue pour essayer de récupérer l'adress",
+            "Une erreur est survenue pour essayer de récupérer l'adress"
           )
         return response.json()
       })
       .then((data) => {
         toast.success(
-          `${data.length} possible adresse récupéré veuillez choisir la bonne`,
+          `${data.length} possible adresse récupéré veuillez choisir la bonne`
         )
         setPlaces(data)
       })
@@ -52,7 +53,7 @@ export default function Generator() {
   }
 
   return (
-    <section className="max-w-md w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mx-auto my-5">
+    <section className="p-4">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <FormField
@@ -74,29 +75,31 @@ export default function Generator() {
         </form>
       </Form>
       <Button variant="outline" className="w-full mt-2" onClick={getLocation}>
-        <LocateIcon className="size-5 mr-2" />
+        <MapPin className="size-5 mr-2" />
         Ou utilisé ma position
       </Button>
 
-      {places.length > 0 && (
-        <ul className="space-y-1 mt-2 overflow-auto">
-          {places.map((place) => (
-            <li
-              key={place.place_id}
-              onClick={() => {
-                if (Number(place.lat) && Number(place.lon)) {
-                  updateLocation({
-                    longitude: Number(place.lon),
-                    latitude: Number(place.lat),
-                  })
-                }
-              }}
-            >
-              <GeocodeMapLocation {...place} />
-            </li>
-          ))}
-        </ul>
-      )}
+      <DrawerFooter>
+        {places.length > 0 && (
+          <ul className="space-y-1 mt-2 overflow-auto">
+            {places.map((place) => (
+              <li
+                key={place.place_id}
+                onClick={() => {
+                  if (Number(place.lat) && Number(place.lon)) {
+                    updateLocation({
+                      longitude: Number(place.lon),
+                      latitude: Number(place.lat),
+                    })
+                  }
+                }}
+              >
+                <GeocodeMapLocation {...place} />
+              </li>
+            ))}
+          </ul>
+        )}
+      </DrawerFooter>
     </section>
   )
 }
