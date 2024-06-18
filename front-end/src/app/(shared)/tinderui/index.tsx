@@ -1,5 +1,5 @@
-import RestaurantSlider from '@/app/shared/restaurant/restaurant-slider'
-import Resume from '@/app/shared/resume'
+import RestaurantSlider from '@/app/(shared)/restaurant/restaurant-slider'
+import Resume from '@/app/(shared)/resume'
 import { useGeoLocation } from '@/utils/context/GeoLocationContext'
 import { useQuery } from '@tanstack/react-query'
 
@@ -9,7 +9,7 @@ export default function TinderUi() {
     queryKey: ['getRestaurants'],
     queryFn: () =>
       fetch(
-        `/api/restaurant/nearby?latitude=${location.latitude}&longitude=${location.longitude}`,
+        `/api/restaurant/nearby?latitude=${location.latitude}&longitude=${location.longitude}`
       ).then((res) => res.json()),
   })
 

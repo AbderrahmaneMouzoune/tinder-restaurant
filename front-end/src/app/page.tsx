@@ -1,6 +1,6 @@
-import Core from '@/app/shared/core'
-import CreateRoom from '@/app/shared/room/create-room'
-import ListRoom from '@/app/shared/room/list-room'
+import Core from '@/app/(shared)/core'
+import CreateRoom from '@/app/(shared)/room/create-room'
+import ListRoom from '@/app/(shared)/room/list-room'
 
 export default function Home() {
   return (

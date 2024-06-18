@@ -1,4 +1,4 @@
-import RestaurantCard from '@/app/shared/restaurant/card'
+import RestaurantCard from '@/app/(shared)/restaurant/card'
 import { Restaurant, RestaurantScore } from '@/types/restaurant'
 import { useRestaurantLiked } from '@/utils/context/RestaurantsLikedContext'
 import { useState } from 'react'
@@ -15,7 +15,7 @@ export default function RestaurantSlider({ restaurants }: Props) {
     currentRestaurant === null ? null : restaurants[currentRestaurant]
 
   const goToNextRestaurant = (
-    currentRestaurantScore: RestaurantScore,
+    currentRestaurantScore: RestaurantScore
   ): void => {
     if (currentRestaurant === null || currentRestaurantInformation === null) {
       return

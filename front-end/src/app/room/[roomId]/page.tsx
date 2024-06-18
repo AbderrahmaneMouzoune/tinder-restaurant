@@ -1,4 +1,4 @@
-import Room from '@/app/shared/room/room'
+import Room from '@/app/(shared)/room/room'
 import { getRoom } from '@/lib/services/room/get-room'
 
 type PageProps = {
