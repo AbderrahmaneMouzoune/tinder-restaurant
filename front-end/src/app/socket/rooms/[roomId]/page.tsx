@@ -1,6 +1,6 @@
 'use client'
 
-import useGetRoomInfo from '@/utils/hook/useGetRoomInfo'
+import useSocketRoom from '@/utils/hook/useSocketRoom'
 
 type PageProps = {
   params: {
@@ -9,7 +9,8 @@ type PageProps = {
 }
 
 export default function Page({ params }: PageProps) {
-  const room = useGetRoomInfo(params.roomId)
+  const { getRoom } = useSocketRoom()
+  const room = getRoom(params.roomId)
 
   if (room === null) {
     return <h1>Sadly no room look like : {params.roomId} </h1>

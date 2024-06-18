@@ -11,7 +11,7 @@ export function useSocketIoClient() {
   return context.socketIoClient
 }
 
-export function useIsSocketConnected() {
+export function useIsSocketConnected(): boolean {
   const context = useContext(socketIoContext)
   if (context.socketIoClient === null && typeof window !== 'undefined') {
     throw new Error(

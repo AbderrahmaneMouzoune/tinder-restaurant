@@ -1,5 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSocketIoClient } from './useSocketIoClient'
+
+type SocketRoomUtilities = {
+  getRoom(roomId: RoomId): Room | null
+}
+
+function useSocketRoom(): SocketRoomUtilities {
+  return {
+    getRoom: useGetRoomInfo,
+  }
+}
 
 function useGetRoomInfo(roomId: RoomId): Room | null {
   const [room, setRoom] = useState<Room | null>(null)
@@ -15,9 +25,13 @@ function useGetRoomInfo(roomId: RoomId): Room | null {
     clientSocket.send('room.get', roomId)
 
     clientSocket.subscribe('room.get.success', receiveRoomHandler)
+
+    return () => {
+      clientSocket.off('room.get.success', receiveRoomHandler)
+    }
   }, [clientSocket, roomId])
 
   return room
 }
 
-export default useGetRoomInfo
+export default useSocketRoom
