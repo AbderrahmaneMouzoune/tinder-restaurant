@@ -14,7 +14,7 @@ export default function Room({ id }: { id: RoomId }) {
   const room = getRoom(id)
 
   if (room === null) {
-    return <div>try to load {id}...</div>
+    return <div>Récupération de {id}...</div>
   }
 
   // TODO: implement that

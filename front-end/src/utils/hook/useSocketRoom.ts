@@ -3,7 +3,7 @@ import { useSocketIoClient } from './useSocketIoClient'
 
 type SocketRoomUtilities = {
   getRoom(roomId: RoomId): Room | null
-  addOneParticipantToRoom(participant: Profile, roomId: RoomId): void
+  addOneParticipantToRoom(participant: Profile, roomId: RoomId): Profile | null
 }
 
 function useSocketRoom(): SocketRoomUtilities {

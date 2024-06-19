@@ -1,5 +1,6 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
 import useSocketRoom from '@/utils/hook/useSocketRoom'
 
 type PageProps = {
@@ -9,12 +10,21 @@ type PageProps = {
 }
 
 export default function Page({ params }: PageProps) {
-  const { getRoom } = useSocketRoom()
+  const { getRoom, addOneParticipantToRoom } = useSocketRoom()
   const room = getRoom(params.roomId)
 
   if (room === null) {
     return <h1>Sadly no room look like : {params.roomId} </h1>
   }
+
+  // const onParticpantJoin = () => {
+  //   addOneParticipantToRoom(
+  //     {
+  //       username: 'Abd',
+  //     },
+  //     room.id
+  //   )
+  // }
 
   return (
     <div>
@@ -31,6 +41,19 @@ export default function Page({ params }: PageProps) {
           ))}
         </ul>
       )}
+
+      <Button
+        onClick={() =>
+          addOneParticipantToRoom(
+            {
+              username: 'Abd',
+            },
+            room.id
+          )
+        }
+      >
+        Faire rejoindre Abd
+      </Button>
     </div>
   )
 }
