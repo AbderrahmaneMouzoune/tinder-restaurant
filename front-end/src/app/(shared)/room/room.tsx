@@ -51,7 +51,7 @@ export default function Room({ id }: { id: RoomId }) {
           Partager le lien
         </ShareButton>
         <Button asChild>
-          <Link href={'/'}>Lancer la session</Link>
+          <Link href={'/game/lalala'}>Lancer la session</Link>
         </Button>
       </section>
     </>
