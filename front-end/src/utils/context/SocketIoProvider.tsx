@@ -10,12 +10,11 @@ export const socketIoContext = createContext<SocketIoContextValue>({
 })
 
 interface Props {
-  roomId: RoomId
   children: React.ReactNode
 }
 
-export function ProvideSocketIoClient({ roomId, children }: Props) {
-  const socketIo = useProvideSocketIoClient(roomId)
+export function SocketIoClientProvider({ children }: Props) {
+  const socketIo = useProvideSocketIoClient()
 
   return (
     <socketIoContext.Provider
@@ -28,7 +27,7 @@ export function ProvideSocketIoClient({ roomId, children }: Props) {
     </socketIoContext.Provider>
   )
 }
-function useProvideSocketIoClient(roomId: RoomId) {
+function useProvideSocketIoClient() {
   const clientRef = useRef<SocketIoClient | null>(null)
   const [connected, setConnected] = useState<boolean>(false)
 

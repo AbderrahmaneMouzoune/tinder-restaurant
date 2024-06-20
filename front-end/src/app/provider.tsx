@@ -4,6 +4,7 @@ import { GeoLocationProvider } from '@/utils/context/GeoLocationContext'
 import { ProfileProvider } from '@/utils/context/ProfileContext'
 import { RestaurantsProvider } from '@/utils/context/RestaurantsContext'
 import { RestaurantsLikedProvider } from '@/utils/context/RestaurantsLikedContext'
+import { SocketIoClientProvider } from '@/utils/context/SocketIoProvider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const queryClient = new QueryClient()
@@ -14,7 +15,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <ProfileProvider>
         <GeoLocationProvider>
           <RestaurantsProvider>
-            <RestaurantsLikedProvider>{children}</RestaurantsLikedProvider>
+            <RestaurantsLikedProvider>
+              <SocketIoClientProvider>{children}</SocketIoClientProvider>
+            </RestaurantsLikedProvider>
           </RestaurantsProvider>
         </GeoLocationProvider>
       </ProfileProvider>

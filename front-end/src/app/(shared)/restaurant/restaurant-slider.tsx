@@ -44,7 +44,7 @@ export default function RestaurantSlider({ restaurants }: Props) {
   }
 
   return (
-    <section className="overflow-x-scroll h-full w-full min-h-screen">
+    <section className="overflow-x-scroll grow rounded-2xl">
       {currentRestaurantInformation && (
         <RestaurantCard
           {...currentRestaurantInformation}

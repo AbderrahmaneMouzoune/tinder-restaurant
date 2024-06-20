@@ -21,7 +21,9 @@ const useRestaurantLiked = (): RestaurantLikedContextType => {
   return context
 }
 
-function RestaurantsLikedProvider({ children }: { children: React.ReactNode }) {
+const RestaurantsLikedProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [restaurantsFiltered, setRestaurantsFiltered] = useState<
     RestaurantWithScore[]
   >([])
