@@ -9,7 +9,7 @@ import {
 
 export function onRoomCreate(socket: Socket, room: Room) {
   console.log(
-    `<- [${events.room.create.event}] - User (${room.host.username}) wants to create Room ${room.id}`
+    `<- [${events.room.create.event}] / [${socket.id}] - User (${room.host.username}) wants to create Room ${room.id}`
   )
 
   if (getRoomById(room.id)) {
@@ -18,7 +18,7 @@ export function onRoomCreate(socket: Socket, room: Room) {
 
   if (addOneRoom(room)) {
     console.log(
-      `-> [${events.room.create.success}] - User (${room.host.username}) created ${room.id}`
+      `-> [${events.room.create.success}] / [${socket.id}] - User (${room.host.username}) created ${room.id}`
     )
 
     return socket.broadcast.emit(
@@ -31,7 +31,7 @@ export function onRoomCreate(socket: Socket, room: Room) {
 
 export function onRoomJoin(socket: Socket, roomId: RoomId, user: Profile) {
   console.log(
-    `<- [${events.room.join.event}] - ${user.username} want to join ${roomId}`
+    `<- [${events.room.join.event}] / [${socket.id}] - ${user.username} want to join ${roomId}`
   )
 
   if (!getRoomById(roomId)) {
@@ -44,7 +44,9 @@ export function onRoomJoin(socket: Socket, roomId: RoomId, user: Profile) {
 
   const room = getRoomById(roomId)
 
-  console.log(`-> [${isParticipantJoined}] - isparticipant joined`)
+  console.log(
+    `-> [${isParticipantJoined}] / [${socket.id}] - isparticipant joined`
+  )
   return socket.broadcast.emit(
     isParticipantJoined,
     room?.participants[room.participants.length - 1]
@@ -53,13 +55,13 @@ export function onRoomJoin(socket: Socket, roomId: RoomId, user: Profile) {
 
 export function onRoomListing(socket: Socket, roomId?: RoomId) {
   console.log(
-    `<- [${events.room.get.event}] - Someone want to retrieve ${roomId}`
+    `<- [${events.room.get.event}] / [${socket.id}] - Someone want to retrieve ${roomId}`
   )
 
   if (!roomId) {
     console.log(
-      `-> [${
-        events.room.get.success
+      `-> [${events.room.get.success}] / [${
+        socket.id
       }] - RoomId (${roomId}) don't exist so we return all rooms (${
         getAllRoom().length
       })`
@@ -71,14 +73,14 @@ export function onRoomListing(socket: Socket, roomId?: RoomId) {
 
   if (roomId && !room) {
     console.log(
-      `-> [${events.room.get.failed}] - Sadly no room ${roomId} exist`
+      `-> [${events.room.get.failed}] / [${socket.id}] - Sadly no room ${roomId} exist`
     )
     return socket.emit(events.room.get.failed, `Room ${roomId} does not exist`)
   }
 
   if (roomId && room) {
     console.log(
-      `-> [${events.room.get.success}] - Successfully found ${room.id} created by ${room.host.username}`
+      `-> [${events.room.get.success}] / [${socket.id}] - Successfully found ${room.id} created by ${room.host.username}`
     )
     return socket.emit(events.room.get.success, room)
   }

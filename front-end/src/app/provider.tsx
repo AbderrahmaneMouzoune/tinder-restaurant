@@ -4,8 +4,8 @@ import { GeoLocationProvider } from '@/utils/context/GeoLocationContext'
 import { ProfileProvider } from '@/utils/context/ProfileContext'
 import { RestaurantsProvider } from '@/utils/context/RestaurantsContext'
 import { RestaurantsLikedProvider } from '@/utils/context/RestaurantsLikedContext'
-import { SocketIoClientProvider } from '@/utils/context/SocketIoProvider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { SocketIoClientProvider } from '@/utils/context/SocketIoContext'
 
 const queryClient = new QueryClient()
 

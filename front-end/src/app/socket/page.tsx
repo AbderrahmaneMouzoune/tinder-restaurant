@@ -1,6 +1,5 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import { socket } from '@/socket'
 import { nanoid } from 'nanoid'
 import { useState } from 'react'
 
